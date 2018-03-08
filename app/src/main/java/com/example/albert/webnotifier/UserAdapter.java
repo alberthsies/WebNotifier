@@ -14,9 +14,9 @@ import java.util.ArrayList;
 
 class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
-    ArrayList<String> users;
+    ArrayList<User> users;
 
-    public UserAdapter(ArrayList<String> users) {
+    public UserAdapter(ArrayList<User> users) {
         this.users = users;
     }
 
@@ -28,7 +28,8 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(UserAdapter.ViewHolder holder, int position) {
-        holder.urlName.setText(users.get(position));
+        holder.urlName.setText(users.get(position).getUrlName());
+        holder.url.setText(users.get(position).getUrl());
     }
 
     @Override
@@ -38,9 +39,12 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView urlName;
+        public TextView url;
+
         public ViewHolder(View itemView) {
             super(itemView);
             urlName = itemView.findViewById(R.id.text_url_name);
+            url = itemView.findViewById(R.id.text_url);
         }
     }
 }

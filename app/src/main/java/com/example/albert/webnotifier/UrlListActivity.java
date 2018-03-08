@@ -24,7 +24,7 @@ public class UrlListActivity extends AppCompatActivity {
 
     FloatingActionButton fab;
 
-    ArrayList<String> users;
+    ArrayList<User> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,11 @@ public class UrlListActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view_url_list);
 
         users = new ArrayList<>();
+
+        for (int i = 0; i < 100; i++) {
+            User user = new User("Albert's Blog" + i, "www.youandiandi.blogspot.com");
+            users.add(user);
+        }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new UserAdapter(users);
