@@ -26,7 +26,8 @@ public class UrlListActivity extends AppCompatActivity {
 
     FloatingActionButton fab;
 
-    //ArrayList<User> users;
+    // TODO: Find a way to delete items
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +38,8 @@ public class UrlListActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_view_url_list);
 
-/*        users = new ArrayList<>();
-
-        for (int i = 0; i < 100; i++) {
-            User user = new User("Albert's Blog" + i, "www.youandiandi.blogspot.com");
-            users.add(user);
-        }*/
-
         AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production").allowMainThreadQueries().build();
-        //AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production").build();
 
-        //List<User> users2 = db.userDAO().getAll();
         List<User> users = db.userDao().getAllusers();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -63,17 +55,10 @@ public class UrlListActivity extends AppCompatActivity {
             }
         });
 
-/*        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
     }
-/*
-    @Override
+
+    // TODO: Add settings
+/*    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_url_list, menu);
