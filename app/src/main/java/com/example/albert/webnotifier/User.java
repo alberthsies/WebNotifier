@@ -1,14 +1,23 @@
 package com.example.albert.webnotifier;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 /**
  * Created by Albert on 2018/3/8.
  */
 
-
+@Entity
 public class User {
 
+    @PrimaryKey(autoGenerate = true)
     private int id;
+
+    @ColumnInfo(name = "url_name")
     private String urlName;
+
+    @ColumnInfo(name = "url")
     private String url;
 
     public User(String urlName, String url) {

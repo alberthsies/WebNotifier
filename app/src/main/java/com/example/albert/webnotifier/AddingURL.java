@@ -1,5 +1,7 @@
 package com.example.albert.webnotifier;
 
+import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -30,11 +32,16 @@ public class AddingURL extends AppCompatActivity{
         url = findViewById(R.id.input_url);
         urlAddingButton = findViewById(R.id.button_add_url);
 
+        final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production").allowMainThreadQueries().build();
+        //final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production").build();
+
         urlAddingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO: 180308 Save input to database
                 Log.d(TAG, "onClick: URL Name = " + urlName.getText().toString() + ", URL = " + url.getText().toString());
+                db.userDao().insertAll(new User(urlName.getText().toString(), url.getText().toString()));
+                startActivity(new Intent(AddingURL.this, UrlListActivity.class));
             }
         });
     }

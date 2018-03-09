@@ -1,5 +1,6 @@
 package com.example.albert.webnotifier;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UrlListActivity extends AppCompatActivity {
 
@@ -24,7 +26,7 @@ public class UrlListActivity extends AppCompatActivity {
 
     FloatingActionButton fab;
 
-    ArrayList<User> users;
+    //ArrayList<User> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +37,18 @@ public class UrlListActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_view_url_list);
 
-        users = new ArrayList<>();
+/*        users = new ArrayList<>();
 
         for (int i = 0; i < 100; i++) {
             User user = new User("Albert's Blog" + i, "www.youandiandi.blogspot.com");
             users.add(user);
-        }
+        }*/
+
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production").allowMainThreadQueries().build();
+        //AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production").build();
+
+        //List<User> users2 = db.userDAO().getAll();
+        List<User> users = db.userDao().getAllusers();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new UserAdapter(users);
