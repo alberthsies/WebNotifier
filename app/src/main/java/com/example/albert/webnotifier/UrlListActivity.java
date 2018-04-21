@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,6 @@ public class UrlListActivity extends AppCompatActivity {
 
     // TODO: Find a way to delete items
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +43,7 @@ public class UrlListActivity extends AppCompatActivity {
         List<User> users = db.userDao().getAllusers();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new UserAdapter(users);
+        adapter = new UserAdapter(users, this);
         recyclerView.setAdapter(adapter);
 
         fab = findViewById(R.id.fab);
@@ -51,6 +51,7 @@ public class UrlListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Log.d(TAG, "onClick: pressed!");
+                //Toast.makeText(UrlListActivity.this,"hello",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(UrlListActivity.this, AddingURL.class));
             }
         });

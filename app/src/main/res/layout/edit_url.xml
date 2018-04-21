@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="24dp"
+        android:text="Editing URL:"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/text_url_name_ed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingBottom="24dp"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/text_url_ed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingBottom="24dp"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/button_delete_url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Deleting URL" />
+
+</LinearLayout>

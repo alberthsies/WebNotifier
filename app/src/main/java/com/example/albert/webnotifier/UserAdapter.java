@@ -1,10 +1,16 @@
 package com.example.albert.webnotifier;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +19,15 @@ import java.util.List;
  * Created by Albert on 2018/3/8.
  */
 
-class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     List<User> users;
+    Context context;
 
-    public UserAdapter(List<User> users) {
+
+    public UserAdapter(List<User> users, Context context) {
         this.users = users;
+        this.context = context;
     }
 
     @Override
@@ -28,9 +37,24 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(UserAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final UserAdapter.ViewHolder holder, int position) {
+
         holder.urlName.setText(users.get(position).getUrlName());
         holder.url.setText(users.get(position).getUrl());
+
+        holder.root.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String TAG = "onClick";
+                Log.d(TAG, "onClick: pressing list: " + holder.urlName.getText());
+                //Toast.makeText(context, holder.urlName.getText() ,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, EditingURL.class);
+                intent.putExtra("urlName", holder.urlName.getText());
+                intent.putExtra("url", holder.url.getText());
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -38,14 +62,16 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         return users.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView urlName;
         public TextView url;
+        public View root;
 
         public ViewHolder(View itemView) {
             super(itemView);
             urlName = itemView.findViewById(R.id.text_url_name);
             url = itemView.findViewById(R.id.text_url);
+            root = itemView;
         }
     }
 }
