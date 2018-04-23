@@ -33,7 +33,25 @@ public interface UserDao {
     @Delete
     void delete(User... users);
 
-    @Query("delete from user where url_name like :badName")
-    void deleteUsersByName(String badName);
+    @Query("delete from user where url_name like :name")
+    void deleteUsersByName(String name);
+
+    @Query("SELECT id from user where url_name like :name")
+    int getIdByName(String name);
+
+    @Query("SELECT url_name from user where id like :Id")
+    String getNameById(int Id);
+
+    @Query("SELECT url from user where url_name like :name")
+    String getUrlByName(String name);
+
+    @Query("SELECT url from user where id like :Id")
+    String getUrlById(int Id);
+
+    @Query("SELECT word_count from user where url_name like :name")
+    int getWordCountByName(String name);
+
+    @Query("SELECT word_count from user where id like :Id")
+    int getWordCountById(int Id);
 
 }

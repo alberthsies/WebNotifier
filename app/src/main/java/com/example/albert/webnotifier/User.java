@@ -20,9 +20,13 @@ public class User {
     @ColumnInfo(name = "url")
     private String url;
 
-    public User(String urlName, String url) {
+    @ColumnInfo(name = "word_count")
+    private int wordCount;
+
+    public User(String urlName, String url, int wordCount) {
         this.urlName = urlName;
         this.url = url;
+        this.wordCount = wordCount;
     }
 
     public int getId() {
@@ -48,4 +52,8 @@ public class User {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    public  int getWordCount() {return wordCount;}
+
+    public  void setWordCount(int wordCount) {this.wordCount = wordCount;}
 }

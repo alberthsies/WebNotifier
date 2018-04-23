@@ -35,6 +35,9 @@ public class EditingURL extends AppCompatActivity {
 
         final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production").allowMainThreadQueries().build();
 
+        Log.d(TAG, "onCreate: entering the item with id: " + db.userDao().getIdByName(urlName) + ", UrlName: " + urlName + ", and word count = " + db.userDao().getWordCountByName(urlName));
+        Toast.makeText(EditingURL.this, "urlName = " + urlName + " and current word count = " + db.userDao().getWordCountByName(urlName), Toast.LENGTH_SHORT).show();
+
         urlDeletingButton = findViewById(R.id.button_delete_url);
 
         urlDeletingButton.setOnClickListener(new View.OnClickListener() {

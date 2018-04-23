@@ -1,5 +1,6 @@
 package com.example.albert.webnotifier;
 
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -12,8 +13,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by Albert on 2018/3/8.
@@ -42,12 +45,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.urlName.setText(users.get(position).getUrlName());
         holder.url.setText(users.get(position).getUrl());
 
+
         holder.root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String TAG = "onClick";
                 Log.d(TAG, "onClick: pressing list: " + holder.urlName.getText());
-                //Toast.makeText(context, holder.urlName.getText() ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, holder.urlName.getText(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, EditingURL.class);
                 intent.putExtra("urlName", holder.urlName.getText());
                 intent.putExtra("url", holder.url.getText());
@@ -62,7 +66,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         return users.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView urlName;
         public TextView url;
         public View root;
